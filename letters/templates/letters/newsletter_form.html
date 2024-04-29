@@ -1,0 +1,32 @@
+{% extends 'letters/base.html' %}
+
+{% block content %}
+    <form method="post" class="row" enctype="multipart/form-data">
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-header">
+                    {% if object %}
+                        <!-- Если объект существует, то это редактирование рассылки -->
+                        Редактирование рассылки
+                    {% else %}
+                        <!-- Иначе это добавление рассылки -->
+                        Добавление рассылки
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-outline-success">
+                        {% if object %}
+                            <!-- Если объект существует, то кнопка "Сохранить" -->
+                            Сохранить
+                        {% else %}
+                            <!-- Иначе кнопка "Добавить" -->
+                            Добавить
+                        {% endif %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
